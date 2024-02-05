@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">To Do</string>
+    <string name="to_do_list">قائمة المهام</string>
+    <string name="settings">الإعدادات</string>
+    <string name="tasks">المهام</string>
+    <string name="language">اللغة</string>
+    <string name="mode">وضع الشاشة</string>
+    <string name="english">English</string>
+    <string name="light">Light</string>
+</resources>
