@@ -1,6 +1,7 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("kotlin-kapt")
 }
 
 android {
@@ -33,6 +34,10 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+
+    buildFeatures{
+        viewBinding = true
+    }
 }
 
 dependencies {
@@ -46,7 +51,7 @@ dependencies {
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
 
     //calendar
-    implementation("com.github.prolificinteractive:material-calendarview:2.0.1") {
+    implementation("com.github.prolificinteractive:material-calendarview:2.0.0") {
         exclude(group = "com.android.support", module = "support-compat")
     }
 

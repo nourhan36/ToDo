@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/backgroundColor"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ImageView
+        android:id="@+id/top_view"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:src="@color/blue"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/language_til"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="30dp"
+        android:drawSelectorOnTop="true"
+        app:startIconDrawable="@drawable/language"
+        app:boxBackgroundColor="@color/white"
+        android:hint="@string/language"
+        android:textColorHint="@color/blue"
+        app:layout_constraintTop_toBottomOf="@id/top_view"
+        style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        >
+
+        <AutoCompleteTextView
+            android:id="@+id/language_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/english"
+            android:textColor="@color/blue"
+            android:fontFamily="@font/poppins_bold"
+            android:inputType="none"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/mode_til"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="30dp"
+        android:drawSelectorOnTop="true"
+        app:startIconDrawable="@drawable/language"
+        app:boxBackgroundColor="@color/white"
+        android:hint="@string/mode"
+        android:textColorHint="@color/blue"
+        app:layout_constraintTop_toBottomOf="@id/language_til"
+        style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        >
+
+        <AutoCompleteTextView
+            android:id="@+id/mode_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/light"
+            android:textColor="@color/blue"
+            android:fontFamily="@font/poppins_bold"
+            android:inputType="none"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+    
+</androidx.constraintlayout.widget.ConstraintLayout>

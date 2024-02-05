@@ -6,6 +6,7 @@
         <item name="colorOnPrimary">@color/white</item>
         <item name="android:statusBarColor">@color/blue</item>
         <item name="floatingActionButtonStyle">@style/fab_style</item>
+        <item name="textInputOutlinedStyle">@style/CustomOutlinedBox</item>
         <!--<item name="android:homeAsUpIndicator">@drawable/back</item> -->
     </style>
 
@@ -30,6 +31,16 @@
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">50%</item>
         <item name="background">@drawable/button_bg</item>
+    </style>
+
+    <style name="CustomOutlinedBox" parent="Widget.Material3.TextInputLayout.OutlinedBox">
+        <!-- Customize other attributes as needed -->
+        <item name="hintTextAppearance">@style/CustomHintText</item>
+    </style>
+
+    <style name="CustomHintText" parent="TextAppearance.AppCompat.Body1">
+        <!-- Set the hint text color -->
+        <item name="android:textColor">@color/blue</item>
     </style>
 
 </resources>
