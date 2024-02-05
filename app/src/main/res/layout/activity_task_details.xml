@@ -8,13 +8,13 @@
         android:id="@+id/app_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        
+
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbar"
+            style="@style/toolbar_style"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/blue"
-            style="@style/toolbar_style">
+            android:background="@color/blue">
 
             <TextView
                 android:id="@+id/title"
@@ -24,12 +24,11 @@
                 android:text="@string/to_do_list" />
 
         </com.google.android.material.appbar.MaterialToolbar>
-        
+
     </com.google.android.material.appbar.AppBarLayout>
 
     <include
         android:id="@+id/content"
-        layout="@layout/content_task_details"
-        />
+        layout="@layout/content_task_details" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

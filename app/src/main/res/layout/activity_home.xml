@@ -20,8 +20,7 @@
                 style="@style/toolbar_title_style"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/to_do_list"
-                />
+                android:text="@string/to_do_list" />
 
         </com.google.android.material.appbar.MaterialToolbar>
     </com.google.android.material.appbar.AppBarLayout>
@@ -33,9 +32,9 @@
         android:layout_gravity="bottom"
         android:backgroundTint="@color/bottom_nav_color"
         app:fabAlignmentMode="center"
+        app:fabAnchorMode="cradle"
         app:fabCradleMargin="8dp"
-        app:fabCradleVerticalOffset="8dp"
-        app:fabAnchorMode="cradle">
+        app:fabCradleVerticalOffset="8dp">
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottomNavigation"
