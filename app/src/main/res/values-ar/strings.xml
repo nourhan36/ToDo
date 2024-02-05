@@ -8,4 +8,10 @@
     <string name="mode">وضع الشاشة</string>
     <string name="english">English</string>
     <string name="light">Light</string>
+    <string name="edit_task">تعديل المهمة</string>
+    <string name="title">العنوان</string>
+    <string name="description">التفاصيل</string>
+    <string name="select_date">التاريخ</string>
+    <string name="select_time">الوقت</string>
+    <string name="save_changes">حفظ</string>
 </resources>

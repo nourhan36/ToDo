@@ -20,7 +20,7 @@
         android:layout_marginTop="30dp"
         android:layout_marginEnd="30dp"
         android:drawSelectorOnTop="true"
-        app:startIconDrawable="@drawable/ic_language"
+        app:startIconDrawable="@drawable/ic_english"
         app:boxBackgroundColor="@color/bottom_nav_color"
         android:hint="@string/language"
         android:textColorHint="@color/blue"

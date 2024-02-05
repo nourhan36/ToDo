@@ -19,7 +19,6 @@ import java.util.Locale
 class SettingsFragment: Fragment() {
     lateinit var viewBinding: FragmentSettingsBinding
 
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -47,7 +46,7 @@ class SettingsFragment: Fragment() {
         autoCompleteLanguage.setOnItemClickListener { adapterView, view, position, id ->
             val selectedText = adapterView.getItemAtPosition(position)
             if (selectedText == "Arabic") {
-                setLocale("ar")
+                setLocale("ar") // Use the language code for Arabic
             } else {
                 setLocale("en")
             }
@@ -72,7 +71,6 @@ class SettingsFragment: Fragment() {
         }
 
     }
-
     fun setLocale(languageCode: String) {
         val locale = Locale(languageCode)
         Locale.setDefault(locale)
@@ -80,11 +78,9 @@ class SettingsFragment: Fragment() {
         val configuration = Configuration(resources.configuration)
         configuration.setLocale(locale)
 
-        requireContext().resources.updateConfiguration(
-            configuration,
-            requireContext().resources.displayMetrics
-        )
+        requireContext().resources.updateConfiguration(configuration, requireContext().resources.displayMetrics)
 
+        // Restart the activity to apply language changes
         requireActivity().recreate()
     }
 }
