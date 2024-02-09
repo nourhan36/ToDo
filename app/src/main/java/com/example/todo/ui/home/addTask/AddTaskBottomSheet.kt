@@ -2,12 +2,15 @@ package com.example.todo.ui.home.addTask
 
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.icu.util.Calendar
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TimePicker
+import com.example.todo.R
 import com.example.todo.database.MyDataBase
 import com.example.todo.database.model.Task
 import com.example.todo.databinding.FragmentAddTaskBinding
@@ -53,6 +56,7 @@ class AddTaskBottomSheet: BottomSheetDialogFragment() {
     private fun showTimePicker() {
         val timePicker = TimePickerDialog(
             requireContext(),
+            R.style.Base_Theme_ToD_TimePicker,
             { dialog, hourOfDay, minute ->
                 calendar.set(Calendar.HOUR_OF_DAY, hourOfDay)
                 calendar.set(Calendar.MINUTE, minute)
@@ -63,12 +67,14 @@ class AddTaskBottomSheet: BottomSheetDialogFragment() {
             calendar.get(Calendar.MINUTE),
             false
         )
+        //timePicker.window?.setBackgroundDrawableResource(R.color.backgroundColor)
         timePicker.show()
     }
 
     val calendar = Calendar.getInstance()
     private fun showDatePicker() {
-        val datePicker = DatePickerDialog(requireContext())
+        val datePicker = DatePickerDialog(requireContext(), R.style.Base_Theme_ToDo_DatePicker)
+        //datePicker.window?.setBackgroundDrawableResource(R.color.backgroundColor)
         datePicker.setOnDateSetListener { dialog, year, month, day ->
             calendar.set(Calendar.DAY_OF_MONTH, day)
             calendar.set(Calendar.MONTH, month)

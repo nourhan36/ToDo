@@ -34,13 +34,23 @@
     </style>
 
     <style name="CustomOutlinedBox" parent="Widget.Material3.TextInputLayout.OutlinedBox">
-        <!-- Customize other attributes as needed -->
         <item name="hintTextAppearance">@style/CustomHintText</item>
     </style>
 
     <style name="CustomHintText" parent="TextAppearance.AppCompat.Body1">
-        <!-- Set the hint text color -->
         <item name="android:textColor">@color/blue</item>
+    </style>
+
+    <style name="Base.Theme.ToDo.DatePicker" parent="Theme.AppCompat.Light.Dialog">
+        <item name="backgroundColor">@color/datePickerBackgroundColor</item>
+        <item name="android:textColorPrimary">@color/datePickerTextColor</item>
+        <item name="colorAccent">@color/datePickerButtonColor</item>
+    </style>
+
+    <style name="Base.Theme.ToD.TimePicker" parent="Theme.AppCompat.Light.Dialog">
+        <item name="backgroundColor">@color/timePickerBackgroundColor</item>
+        <item name="android:textColorPrimary">@color/timePickerTextColor</item>
+        <item name="colorAccent">@color/timePickerButtonColor</item>
     </style>
 
 </resources>
