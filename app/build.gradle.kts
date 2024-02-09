@@ -50,6 +50,13 @@ dependencies {
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
 
+    //Room
+    val room_version = "2.6.1"
+
+    implementation("androidx.room:room-runtime:$room_version")
+    kapt("androidx.room:room-compiler:$room_version")
+
+
     //calendar
     implementation("com.github.prolificinteractive:material-calendarview:2.0.0") {
         exclude(group = "com.android.support", module = "support-compat")
