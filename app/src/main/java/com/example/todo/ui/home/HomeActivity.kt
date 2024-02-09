@@ -6,15 +6,16 @@ import androidx.fragment.app.Fragment
 import com.example.todo.R
 import com.example.todo.database.MyDataBase
 import com.example.todo.databinding.ActivityHomeBinding
+import com.example.todo.ui.home.addTask.AddTaskBottomSheet
 import com.example.todo.ui.home.settings.SettingsFragment
 import com.example.todo.ui.home.tasks.TasksFragment
 
 class HomeActivity : AppCompatActivity() {
-    lateinit var viewBinding: ActivityHomeBinding
+    lateinit var binding: ActivityHomeBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewBinding = ActivityHomeBinding.inflate(layoutInflater)
-        setContentView(viewBinding.root)
+        binding = ActivityHomeBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         MyDataBase.getInstance()
             .getTasksDao()
             .getAllTasks()
@@ -22,16 +23,25 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun initViews() {
-        viewBinding.bottomNavigation.setOnItemSelectedListener { menuItem ->
+        binding.bottomNavigation.setOnItemSelectedListener { menuItem ->
             if (menuItem.itemId == R.id.tasks_menu_item) {
                 pushFragment(TasksFragment())
-                viewBinding.title.text = getString(R.string.to_do_list)
+                binding.title.text = getString(R.string.to_do_list)
             } else if (menuItem.itemId == R.id.settings_menu_item) {
                 pushFragment(SettingsFragment())
-                viewBinding.title.text = getString(R.string.settings)
+                binding.title.text = getString(R.string.settings)
             }
             true
         }
+        binding.bottomNavigation.selectedItemId = R.id.tasks_menu_item
+        binding.fabAddTask.setOnClickListener{
+            showAddTaskBottomSheet()
+        }
+    }
+
+    private fun showAddTaskBottomSheet() {
+        val addTaskSheet = AddTaskBottomSheet()
+        addTaskSheet.show(supportFragmentManager,null)
     }
 
     private fun pushFragment(fragment: Fragment) {
