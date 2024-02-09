@@ -11,6 +11,10 @@ import android.widget.TimePicker
 import com.example.todo.database.MyDataBase
 import com.example.todo.database.model.Task
 import com.example.todo.databinding.FragmentAddTaskBinding
+import com.example.todo.ui.formatDate
+import com.example.todo.ui.formatTime
+import com.example.todo.ui.getDateOnly
+import com.example.todo.ui.getTimeOnly
 import com.example.todo.ui.showDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import java.text.SimpleDateFormat
@@ -124,40 +128,15 @@ class AddTaskBottomSheet: BottomSheetDialogFragment() {
             posActionName = "ok",
             posActionCallBack = {
                 dismiss()
+                onTaskAddedListener?.onTaskAdded()
             },
             isCancelable = false
         )
     }
-}
 
-fun Calendar.getDateOnly():Long{
-    val calendar = Calendar.getInstance()
-    calendar.set(
-        get(Calendar.YEAR),
-        get(Calendar.MONTH),
-        get(Calendar.DATE),
-        0,0,0)
-    calendar.set(Calendar.MILLISECOND,0)
-    return calendar.time.time
-}
+    var onTaskAddedListener: OnTaskAddedListener? = null
 
-fun Calendar.getTimeOnly():Long{
-    val calendar = Calendar.getInstance()
-    calendar.set(
-        0,
-        0,
-        0,
-        get(Calendar.HOUR_OF_DAY),get(Calendar.MINUTE),0)
-    calendar.set(Calendar.MILLISECOND,0)
-    return calendar.time.time
-}
-
-fun Calendar.formatTime(): String {
-    val formatter = SimpleDateFormat("hh:mm a")
-    return formatter.format(time)
-}
-
-fun Calendar.formatDate(): String{
-    val formatter = SimpleDateFormat("dd/MM/yyyy")
-    return formatter.format(time)
+    fun interface OnTaskAddedListener {
+        fun onTaskAdded()
+    }
 }

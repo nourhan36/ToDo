@@ -34,14 +34,22 @@ class HomeActivity : AppCompatActivity() {
             true
         }
         binding.bottomNavigation.selectedItemId = R.id.tasks_menu_item
-        binding.fabAddTask.setOnClickListener{
+        binding.fabAddTask.setOnClickListener {
             showAddTaskBottomSheet()
         }
     }
 
     private fun showAddTaskBottomSheet() {
         val addTaskSheet = AddTaskBottomSheet()
-        addTaskSheet.show(supportFragmentManager,null)
+        addTaskSheet.onTaskAddedListener = AddTaskBottomSheet.OnTaskAddedListener {
+            //notify tasksFragment
+            supportFragmentManager.fragments.forEach { fragment ->
+                if (fragment is TasksFragment && fragment.isAdded) {
+                    fragment.retrieveTasksList()
+                }
+            }
+        }
+        addTaskSheet.show(supportFragmentManager, null)
     }
 
     private fun pushFragment(fragment: Fragment) {

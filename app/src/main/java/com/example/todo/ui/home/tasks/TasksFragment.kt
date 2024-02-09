@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.todo.database.MyDataBase
 import com.example.todo.databinding.FragmentTasksBinding
-import com.example.todo.ui.home.addTask.getDateOnly
+import com.example.todo.ui.getDateOnly
 import com.prolificinteractive.materialcalendarview.CalendarDay
 
 class TasksFragment:Fragment() {
@@ -33,7 +33,7 @@ class TasksFragment:Fragment() {
     }
 
     val currentDate = Calendar.getInstance()
-    private fun retrieveTasksList() {
+     fun retrieveTasksList() {
         val allTasks = MyDataBase.getInstance()
             .getTasksDao()
             .getTasksByDate(currentDate.getDateOnly())
