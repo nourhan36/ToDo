@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.todo.database.MyDataBase
+import com.example.todo.database.model.Task
 import com.example.todo.databinding.FragmentTasksBinding
 import com.example.todo.ui.getDateOnly
 import com.prolificinteractive.materialcalendarview.CalendarDay
@@ -51,5 +52,11 @@ class TasksFragment:Fragment() {
             }
         }
         binding.calendarView.selectedDate = CalendarDay.today()
+        adapter.onImageClickListener = object :TasksAdapter.OnItemClickListener{
+            override fun onItemClick(position: Int, task: Task) {
+                task.isDone = !task.isDone
+                adapter.notifyItemChanged(position)
+            }
+        }
     }
 }

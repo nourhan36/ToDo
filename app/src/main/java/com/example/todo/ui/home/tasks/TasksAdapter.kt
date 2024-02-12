@@ -3,6 +3,7 @@ package com.example.todo.ui.home.tasks
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.todo.R
 import com.example.todo.database.model.Task
 import com.example.todo.databinding.ItemTaskBinding
 
@@ -18,6 +19,17 @@ class TasksAdapter(var tasks: MutableList<Task>? = null) : RecyclerView.Adapter<
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val task = tasks!![position]
         holder.bind(task)
+        if (onImageClickListener != null) {
+            holder.itemView.setOnClickListener {
+                onImageClickListener?.onItemClick(position, task)
+            }
+        }
+    }
+
+    var onImageClickListener: OnItemClickListener? = null
+
+    interface OnItemClickListener {
+        fun onItemClick(position: Int, task: Task)
     }
 
     fun changeData(allTasks: List<Task>) {
@@ -32,6 +44,20 @@ class TasksAdapter(var tasks: MutableList<Task>? = null) : RecyclerView.Adapter<
         fun bind(task: Task) {
             binding.title.text = task.title
             binding.description.text = task.content
+            if (task.isDone) {
+                binding.btnTaskIsDone.setBackgroundResource(R.drawable.ic_done)
+            } else {
+                binding.btnTaskIsDone.setBackgroundResource(R.drawable.check_mark)
+            }
+            binding.btnTaskIsDone.setOnClickListener {
+                task.isDone = !task.isDone
+                if (task.isDone) {
+                    binding.btnTaskIsDone.setBackgroundResource(R.drawable.ic_done)
+                } else {
+                    binding.btnTaskIsDone.setBackgroundResource(R.drawable.check_mark)
+                }
+            }
         }
+
     }
 }

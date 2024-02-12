@@ -7,6 +7,8 @@
     <color name="text_color">@color/white</color>
     <color name="bottom_nav_color">@color/white</color>
     <color name="grey">#C8C9CB</color>
+    <color name="red">#EC4B4B</color>
+    <color name="green">#4CAF50</color>
 
     <color name="datePickerBackgroundColor">@color/backgroundColor</color>
     <color name="datePickerTextColor">#000000</color>
