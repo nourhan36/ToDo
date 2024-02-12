@@ -4,8 +4,11 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.todo.R
+import com.example.todo.database.MyDataBase
 import com.example.todo.database.model.Task
 import com.example.todo.databinding.ItemTaskBinding
+import com.zerobranch.layout.SwipeLayout
+import com.zerobranch.layout.SwipeLayout.SwipeActionsListener
 
 class TasksAdapter(var tasks: MutableList<Task>? = null) : RecyclerView.Adapter<TasksAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -24,8 +27,19 @@ class TasksAdapter(var tasks: MutableList<Task>? = null) : RecyclerView.Adapter<
                 onImageClickListener?.onItemClick(position, task)
             }
         }
-    }
+        holder.binding.swipeLayout.setOnActionsListener(object :SwipeLayout.SwipeActionsListener{
+            override fun onOpen(direction: Int, isContinuous: Boolean) {
+                if(direction == SwipeLayout.RIGHT){
+                    onDeleteClickListener?.onItemClick(position,task)
+                }else if(direction==SwipeLayout.LEFT){
 
+                }
+            }
+            override fun onClose() {
+            }
+        })
+    }
+    var onDeleteClickListener:OnItemClickListener? =null
     var onImageClickListener: OnItemClickListener? = null
 
     interface OnItemClickListener {
