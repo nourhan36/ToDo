@@ -16,8 +16,7 @@ import com.zerobranch.layout.SwipeLayout
 import com.zerobranch.layout.SwipeLayout.SwipeActionsListener
 
 
-
-class TasksFragment:Fragment() {
+class TasksFragment : Fragment() {
     lateinit var binding: FragmentTasksBinding
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -35,8 +34,8 @@ class TasksFragment:Fragment() {
         swipeLayout()
     }
 
-    private fun isDone(){
-        adapter.onImageClickListener = object :TasksAdapter.OnItemClickListener{
+    private fun isDone() {
+        adapter.onImageClickListener = object : TasksAdapter.OnItemClickListener {
             override fun onItemClick(position: Int, task: Task) {
                 task.isDone = !task.isDone
                 adapter.notifyItemChanged(position)
@@ -45,9 +44,16 @@ class TasksFragment:Fragment() {
     }
 
     private fun swipeLayout() {
-        adapter.onDeleteClickListener = object :TasksAdapter.OnItemClickListener{
+        adapter.onDeleteClickListener = object : TasksAdapter.OnItemClickListener {
             override fun onItemClick(pos: Int, item: Task) {
-                deleteTask(item)
+                showDialog(
+                    "Are you sure you want to delete this task?",
+                    posActionName = "Delete",
+                    posActionCallBack = {
+                        deleteTask(item)
+                    },
+                    negActionName = "Cancel"
+                )
             }
 
             private fun deleteTask(task: Task) {
@@ -55,7 +61,7 @@ class TasksFragment:Fragment() {
                     .getTasksDao().deleteTask(task)
                 showDialog(
                     "Task Deleted Successfully",
-                    posActionName = "ok",
+                    posActionName = "OK",
                     isCancelable = false
                 )
                 retrieveTasksList()
@@ -69,7 +75,7 @@ class TasksFragment:Fragment() {
     }
 
     val currentDate = Calendar.getInstance()
-     fun retrieveTasksList() {
+    fun retrieveTasksList() {
         val allTasks = MyDataBase.getInstance()
             .getTasksDao()
             .getTasksByDate(currentDate.getDateOnly())
