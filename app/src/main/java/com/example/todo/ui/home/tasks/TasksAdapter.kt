@@ -30,8 +30,10 @@ class TasksAdapter(var tasks: MutableList<Task>? = null) : RecyclerView.Adapter<
         holder.binding.swipeLayout.setOnActionsListener(object : SwipeLayout.SwipeActionsListener {
             override fun onOpen(direction: Int, isContinuous: Boolean) {
                 if (direction == SwipeLayout.RIGHT) {
+                    holder.binding.swipeLayout.close()
                     onDeleteClickListener?.onItemClick(position, task)
                 } else if (direction == SwipeLayout.LEFT) {
+                    holder.binding.swipeLayout.close()
                     onEditClickListener?.onItemClick(position, task)
                 }
             }

@@ -91,12 +91,6 @@ class TasksFragment : Fragment() {
         startActivity(intent)
     }
 
-    private fun editItem(position: Int, task: Task) {
-        val intent = Intent(requireContext(), EditTaskActivity::class.java)
-        intent.putExtra("task", task)
-        startActivity(intent)
-    }
-
     override fun onResume() {
         super.onResume()
         retrieveTasksList()
