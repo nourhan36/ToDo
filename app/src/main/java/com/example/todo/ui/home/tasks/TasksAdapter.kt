@@ -27,19 +27,22 @@ class TasksAdapter(var tasks: MutableList<Task>? = null) : RecyclerView.Adapter<
                 onImageClickListener?.onItemClick(position, task)
             }
         }
-        holder.binding.swipeLayout.setOnActionsListener(object :SwipeLayout.SwipeActionsListener{
+        holder.binding.swipeLayout.setOnActionsListener(object : SwipeLayout.SwipeActionsListener {
             override fun onOpen(direction: Int, isContinuous: Boolean) {
-                if(direction == SwipeLayout.RIGHT){
-                    onDeleteClickListener?.onItemClick(position,task)
-                }else if(direction==SwipeLayout.LEFT){
-
+                if (direction == SwipeLayout.RIGHT) {
+                    onDeleteClickListener?.onItemClick(position, task)
+                } else if (direction == SwipeLayout.LEFT) {
+                    onEditClickListener?.onItemClick(position, task)
                 }
             }
+
             override fun onClose() {
             }
         })
     }
-    var onDeleteClickListener:OnItemClickListener? =null
+
+    var onEditClickListener: OnItemClickListener? = null
+    var onDeleteClickListener: OnItemClickListener? = null
     var onImageClickListener: OnItemClickListener? = null
 
     interface OnItemClickListener {
@@ -58,11 +61,6 @@ class TasksAdapter(var tasks: MutableList<Task>? = null) : RecyclerView.Adapter<
         fun bind(task: Task) {
             binding.title.text = task.title
             binding.description.text = task.content
-            if (task.isDone) {
-                binding.btnTaskIsDone.setBackgroundResource(R.drawable.ic_done)
-            } else {
-                binding.btnTaskIsDone.setBackgroundResource(R.drawable.check_mark)
-            }
             binding.btnTaskIsDone.setOnClickListener {
                 task.isDone = !task.isDone
                 if (task.isDone) {
@@ -70,6 +68,7 @@ class TasksAdapter(var tasks: MutableList<Task>? = null) : RecyclerView.Adapter<
                 } else {
                     binding.btnTaskIsDone.setBackgroundResource(R.drawable.check_mark)
                 }
+                MyDataBase.getInstance().getTasksDao().updateTask(task)
             }
         }
 

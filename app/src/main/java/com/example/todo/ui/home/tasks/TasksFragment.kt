@@ -1,5 +1,6 @@
 package com.example.todo.ui.home.tasks
 
+import android.content.Intent
 import android.icu.util.Calendar
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,8 +11,13 @@ import com.example.todo.database.MyDataBase
 import com.example.todo.database.model.Task
 import com.example.todo.databinding.FragmentTasksBinding
 import com.example.todo.ui.getDateOnly
+import com.example.todo.ui.home.editTask.EditTaskActivity
 import com.example.todo.ui.showDialog
 import com.prolificinteractive.materialcalendarview.CalendarDay
+import com.example.todo.ui.formatTime
+import com.example.todo.ui.formatDate
+import com.example.todo.ui.getDateOnly
+import com.example.todo.ui.getTimeOnly
 import com.zerobranch.layout.SwipeLayout
 import com.zerobranch.layout.SwipeLayout.SwipeActionsListener
 
@@ -44,6 +50,12 @@ class TasksFragment : Fragment() {
     }
 
     private fun swipeLayout() {
+        adapter.onEditClickListener = object : TasksAdapter.OnItemClickListener {
+            override fun onItemClick(position: Int, task: Task) {
+                sendIntent(task)
+                retrieveTasksList()
+            }
+        }
         adapter.onDeleteClickListener = object : TasksAdapter.OnItemClickListener {
             override fun onItemClick(pos: Int, item: Task) {
                 showDialog(
@@ -67,6 +79,22 @@ class TasksFragment : Fragment() {
                 retrieveTasksList()
             }
         }
+    }
+    private fun sendIntent(task: Task) {
+        val intent = Intent(requireContext(), EditTaskActivity::class.java)
+        intent.putExtra("taskId", task.id)
+        intent.putExtra("title", task.title)
+        intent.putExtra("content", task.content)
+        intent.putExtra("date", task.date)
+        intent.putExtra("time", task.time)
+
+        startActivity(intent)
+    }
+
+    private fun editItem(position: Int, task: Task) {
+        val intent = Intent(requireContext(), EditTaskActivity::class.java)
+        intent.putExtra("task", task)
+        startActivity(intent)
     }
 
     override fun onResume() {
