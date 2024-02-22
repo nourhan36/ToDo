@@ -10,6 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TimePicker
+import androidx.core.content.ContextCompat
 import com.example.todo.R
 import com.example.todo.database.MyDataBase
 import com.example.todo.database.model.Task
@@ -67,14 +68,14 @@ class AddTaskBottomSheet: BottomSheetDialogFragment() {
             calendar.get(Calendar.MINUTE),
             false
         )
-        //timePicker.window?.setBackgroundDrawableResource(R.color.backgroundColor)
+        timePicker.window?.setBackgroundDrawableResource(R.color.backgroundColor)
         timePicker.show()
     }
 
     val calendar = Calendar.getInstance()
     private fun showDatePicker() {
         val datePicker = DatePickerDialog(requireContext(), R.style.Base_Theme_ToDo_DatePicker)
-        //datePicker.window?.setBackgroundDrawableResource(R.color.backgroundColor)
+        datePicker.window?.setBackgroundDrawableResource(R.color.backgroundColor)
         datePicker.setOnDateSetListener { dialog, year, month, day ->
             calendar.set(Calendar.DAY_OF_MONTH, day)
             calendar.set(Calendar.MONTH, month)

@@ -16,9 +16,10 @@ import com.example.todo.R
 import com.example.todo.databinding.FragmentSettingsBinding
 import java.util.Locale
 
-class SettingsFragment: Fragment() {
+class SettingsFragment : Fragment() {
     lateinit var viewBinding: FragmentSettingsBinding
-
+    lateinit var currentLanguage: String
+    lateinit var currentMode: String
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -43,10 +44,40 @@ class SettingsFragment: Fragment() {
         autoCompleteLanguage.setAdapter(adapterLanguage)
         autoCompleteMode.setAdapter(adapterMode)
 
+        if (Locale.getDefault().language == "ar") {
+            currentLanguage = "Arabic"
+            viewBinding.languageTil.startIconDrawable = ContextCompat.getDrawable(
+                requireContext(),
+                R.drawable.ic_arabic
+            )
+        } else {
+            currentLanguage = "English"
+            viewBinding.languageTil.startIconDrawable = ContextCompat.getDrawable(
+                requireContext(),
+                R.drawable.ic_english
+            )
+        }
+        autoCompleteLanguage.setText(currentLanguage, false)
+
+        if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
+            currentMode = "Dark"
+            viewBinding.modeTil.startIconDrawable = ContextCompat.getDrawable(
+                requireContext(),
+                R.drawable.ic_dark_mode
+            )
+        } else {
+            currentMode = "Light"
+            viewBinding.modeTil.startIconDrawable = ContextCompat.getDrawable(
+                requireContext(),
+                R.drawable.ic_light_mode
+            )
+        }
+        autoCompleteMode.setText(currentMode, false)
+
         autoCompleteLanguage.setOnItemClickListener { adapterView, view, position, id ->
             val selectedText = adapterView.getItemAtPosition(position)
             if (selectedText == "Arabic") {
-                setLocale("ar") // Use the language code for Arabic
+                setLocale("ar")
             } else {
                 setLocale("en")
             }
@@ -55,22 +86,14 @@ class SettingsFragment: Fragment() {
         autoCompleteMode.setOnItemClickListener { adapterView, view, position, id ->
             val selectedText = adapterView.getItemAtPosition(position)
             if (selectedText == "Dark") {
-                viewBinding.modeTil.startIconDrawable = ContextCompat.getDrawable(
-                    requireContext(),
-                    R.drawable.ic_dark_mode
-                )
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
             } else {
-                // Set the default drawable for other modes
-                viewBinding.modeTil.startIconDrawable = ContextCompat.getDrawable(
-                    requireContext(),
-                    R.drawable.ic_light_mode
-                )
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
             }
         }
 
     }
+
     fun setLocale(languageCode: String) {
         val locale = Locale(languageCode)
         Locale.setDefault(locale)
@@ -78,9 +101,11 @@ class SettingsFragment: Fragment() {
         val configuration = Configuration(resources.configuration)
         configuration.setLocale(locale)
 
-        requireContext().resources.updateConfiguration(configuration, requireContext().resources.displayMetrics)
+        requireContext().resources.updateConfiguration(
+            configuration,
+            requireContext().resources.displayMetrics
+        )
 
-        // Restart the activity to apply language changes
         requireActivity().recreate()
     }
 }
