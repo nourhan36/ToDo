@@ -4,4 +4,16 @@
     <color name="blue">#5D9CEC</color>
     <color name="text_color">@color/black</color>
     <color name="bottom_nav_color">#141922</color>
+    <color name="task_description">@color/white</color>
+    <color name="grey">#C8C9CB</color>
+    <color name="red">#EC4B4B</color>
+    <color name="green">#4CAF50</color>
+
+    <color name="datePickerBackgroundColor">@color/backgroundColor</color>
+    <color name="datePickerTextColor">@color/white</color>
+    <color name="datePickerButtonColor">@color/blue</color>
+
+    <color name="timePickerBackgroundColor">@color/backgroundColor</color>
+    <color name="timePickerTextColor">@color/blue</color>
+    <color name="timePickerButtonColor">@color/blue</color>
 </resources>
