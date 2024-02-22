@@ -90,8 +90,8 @@ class SettingsFragment : Fragment() {
             } else {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
             }
+            setLocale(currentLanguage)
         }
-
     }
 
     fun setLocale(languageCode: String) {
