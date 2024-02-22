@@ -8,7 +8,6 @@ import com.example.todo.database.MyDataBase
 import com.example.todo.database.model.Task
 import com.example.todo.databinding.ItemTaskBinding
 import com.zerobranch.layout.SwipeLayout
-import com.zerobranch.layout.SwipeLayout.SwipeActionsListener
 
 class TasksAdapter(var tasks: MutableList<Task>? = null) : RecyclerView.Adapter<TasksAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -66,9 +65,9 @@ class TasksAdapter(var tasks: MutableList<Task>? = null) : RecyclerView.Adapter<
             binding.btnTaskIsDone.setOnClickListener {
                 task.isDone = !task.isDone
                 if (task.isDone) {
-                    binding.btnTaskIsDone.setBackgroundResource(R.drawable.ic_done)
+                    binding.btnTaskIsDone.setBackgroundResource(R.drawable.done_img)
                 } else {
-                    binding.btnTaskIsDone.setBackgroundResource(R.drawable.check_mark)
+                    binding.btnTaskIsDone.setBackgroundResource(R.drawable.not_done)
                 }
                 MyDataBase.getInstance().getTasksDao().updateTask(task)
             }

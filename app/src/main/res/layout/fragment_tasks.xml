@@ -9,7 +9,7 @@
         android:id="@+id/top_view"
         android:layout_width="match_parent"
         android:layout_height="80dp"
-        android:src="@color/blue"
+        android:src="@drawable/gradient"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.cardview.widget.CardView
