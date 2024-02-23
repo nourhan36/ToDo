@@ -13,7 +13,7 @@ class SplashActivity : AppCompatActivity() {
         setContentView(R.layout.activity_splash)
         Handler(mainLooper).postDelayed({
             startHomeActivity()
-        },2000)
+        },1000)
     }
 
     private fun startHomeActivity() {

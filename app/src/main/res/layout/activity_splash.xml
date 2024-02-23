@@ -4,13 +4,28 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/backgroundColor"
+    android:background="@drawable/gradient"
     tools:context=".ui.splash.SplashActivity">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="To Do"
+        android:textColor="@color/white"
+        android:textSize="48sp"
+        android:fontFamily="@font/bitter_semi_bold_italic"
+        android:textStyle="bold"
+        android:layout_marginBottom="130dp"
+        app:layout_constraintBottom_toTopOf="@id/imv"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
+
     <ImageView
+        android:id="@+id/imv"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:src="@drawable/logo"
+        android:src="@drawable/splash_ic"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_percent=".3"
