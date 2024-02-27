@@ -107,7 +107,7 @@
                     android:background="@drawable/not_done"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHeight_percent=".35"
+                    app:layout_constraintHeight_percent=".45"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintWidth_percent=".2" />
 

@@ -65,7 +65,7 @@ class TasksAdapter(var tasks: MutableList<Task>? = null) : RecyclerView.Adapter<
             binding.btnTaskIsDone.setOnClickListener {
                 task.isDone = !task.isDone
                 if (task.isDone) {
-                    binding.btnTaskIsDone.setBackgroundResource(R.drawable.done_img)
+                    binding.btnTaskIsDone.setBackgroundResource(R.drawable.is_done)
                 } else {
                     binding.btnTaskIsDone.setBackgroundResource(R.drawable.not_done)
                 }
